@@ -2,8 +2,8 @@ package com.keenworks.vote.condorcet.set
 
 object SchwartzService {
 
-  def getSchwartz(candidateCount: Int, candidateKeys: Seq[Int], tally: Array[Array[Int]]): Seq[Int] = {
-    val dummy = Array.ofDim[Boolean](candidateCount,candidateCount)
+  def getSchwartz(candidateKeys: Seq[Int], tally: Array[Array[Int]]): List[List[Int]] = {
+    val dummy = Array.ofDim[Boolean](tally.length,tally.length)
 
     for {
       index <- candidateKeys
@@ -36,17 +36,18 @@ object SchwartzService {
     //      if (s) '1' else '0'
     //    } + ",") }); println }
 
-    val losers: Seq[Int] = for {
+    val losers: Seq[Int] = { for {
       index <- candidateKeys
       jindex <- candidateKeys
       if jindex != index
       i = index - 1
       j = jindex - 1
       if dummy(j)(i) && !dummy(i)(j)
-    } yield i + 1
+    } yield i + 1 }.distinct
 
-    //  println("losers: " + losers.toString)
+//    println("losers: " + losers.toString)
 
-    candidateKeys.filterNot(p => losers.contains(p))
+    val schwartzSet: List[Int] = (candidateKeys diff losers).toList
+    if(losers.nonEmpty) List(schwartzSet) ++ getSchwartz(losers, tally) else List(schwartzSet)
   }
 }

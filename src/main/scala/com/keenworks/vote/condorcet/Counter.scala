@@ -1,21 +1,20 @@
 package com.keenworks.vote.condorcet
 
 import com.keenworks.vote.condorcet.input.{BallotService, CandidateService}
-import com.keenworks.vote.condorcet.set.{SchwartzService, SmithService}
+import com.keenworks.vote.condorcet.set.{SchwartzService, SetPrinter, SmithService}
 
 object Counter extends App {
   val candidates = CandidateService.getBargamel
   val ballots = BallotService.getBallots
+  val tally: Array[Array[Int]] = TallyService.tallyBallots(ballots, candidates.size)
 
-  val candidateCount = candidates.size
   val candidateKeys: Seq[Int] = candidates.keys.toSeq.sortBy(x => x)
 
-  val tally: Array[Array[Int]] = TallyService.tallyBallots(ballots, candidateCount)
+  val schwartzSet = SchwartzService.getSchwartz(candidateKeys, tally)
+  println("Schwartz: ")
+  SetPrinter.print(schwartzSet, candidates)
+  val smithSet = SmithService.getSmith(candidateKeys, tally)
+  println("Smith: ")
+  SetPrinter.print(smithSet, candidates)
 
-  val schwartzSet: Seq[Int] = SchwartzService.getSchwartz(candidateCount, candidateKeys, tally)
-  println("schwartz: " + schwartzSet.toString)
-  val smithSet: List[Int] = SmithService.getSmith(candidateCount, candidateKeys, tally)
-  print("smith: ")
-  smithSet.sortBy(f => f).foreach(f => print(f + 1 + ", "))
-  println
 }
