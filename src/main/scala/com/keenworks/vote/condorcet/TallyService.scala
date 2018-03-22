@@ -10,6 +10,9 @@ object TallyService {
       ranks.combinations(2).foreach(f => recordVictories(f.head, f(1)))
     })
 
+    /*
+    TODO: This is a little ugly because it assumes candidates are 1-indexed.
+     */
     def recordVictories(victor: String, vanquished: String): Unit =
       for {
         winnerStr <- victor.split('=')
