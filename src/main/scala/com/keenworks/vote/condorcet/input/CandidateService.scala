@@ -1,12 +1,7 @@
 package com.keenworks.vote.condorcet.input
 
-import scala.io.Source
-
 object CandidateService {
-  def getCandidates: Map[Int, String] = {
-    println("Input candidate ID:Name pairs, one per line")
-
-    val candidateInput: List[String] = Source.stdin.getLines.toList
+  def getCandidates(candidateInput: List[String]): Map[Int, String] = {
     candidateInput.map(f => {
       val ballotLine: Array[String] = f.split(':')
       ballotLine(0).toInt -> ballotLine(1)

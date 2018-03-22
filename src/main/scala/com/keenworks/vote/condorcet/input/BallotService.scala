@@ -1,7 +1,5 @@
 package com.keenworks.vote.condorcet.input
 
-import scala.io.Source
-
 object BallotService {
   /*
 
@@ -21,11 +19,8 @@ object BallotService {
   (------->)
 
   */
-  def getBallots: List[List[String]] = {
-    System.out.println("Input Condorcet votes in format 3:0>1=2")
-    val ballotInput = Source.stdin.getLines.toList
-
-    ballotInput.flatMap(ln => {
+  def getBallots(ballotLines: List[String]): List[List[String]] = {
+    ballotLines.flatMap(ln => {
       val ballotGroup: Array[String] = ln.split(':').take(2)
       val (count, rank): (Int, String) = ballotGroup(0).toInt -> ballotGroup(1)
       List.fill(count)(rank.split('>').toList)
