@@ -1,4 +1,4 @@
-package com.keenworks.vote.condorcet
+package com.keenworks.vote.condorcet.tally
 
 object TallyService {
 
@@ -20,16 +20,6 @@ object TallyService {
         winner = winnerStr.toInt
         loser = loserStr.toInt
       } tally(winner-1)(loser-1) += 1
-
-    //  tally.zipWithIndex.foreach {
-    //    case (row, count) =>
-    //      val name = domains(count + 1)
-    //      printf("%-70s", name + ": ")
-    //      row foreach (s => {
-    //        printf("%-3s", s + ",")
-    //      })
-    //      println
-    //  }
 
     tally
   }

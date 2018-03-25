@@ -59,9 +59,9 @@ a preference cycle. But this is not the fault of the Smith/Schwartz
 Set. "The fault, dear Brutus, is not in our stars / But in ourselves".
 It is the electorate itself that has this inconsistency.
 
-It's this author's view that a method should only be called a Condorcet 
-if it is limited to identifying the Smith Set, or the Schwartz Set 
-if Weak Condorcet Winners are allowable.
+It's this author's view that a method should only be called a 
+Condorcet Method if it is limited to identifying the Smith Set, 
+or the Schwartz Set if Weak Condorcet Winners are allowable.
 
 All other so-called "Condorcet Completion" algorithms should be
 described as they are - tiebreakers that are by their very nature

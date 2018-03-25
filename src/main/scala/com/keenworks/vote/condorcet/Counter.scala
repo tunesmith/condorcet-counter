@@ -2,6 +2,7 @@ package com.keenworks.vote.condorcet
 
 import com.keenworks.vote.condorcet.input.{BallotService, CandidateService}
 import com.keenworks.vote.condorcet.set.{SchwartzService, SetPrinter, SmithService}
+import com.keenworks.vote.condorcet.tally.TallyService
 
 import scala.io.Source
 
