@@ -3,6 +3,13 @@
 This is a simple excuse to play with [Scala Native](http://www.scala-native.org/en/latest/)
 and some Condorcet algorithms.
 
+## Prerequisites
+
+Requires Boehm garbage collector and the RE2 regular expression
+library installed natively. See 
+[scala-native docs](http://www.scala-native.org/en/latest/user/setup.html)
+for details.
+
 ## Usage
 
 This is a simple script designed to be run from the shell. It
@@ -29,14 +36,15 @@ set, removing those candidates from the ballots, and recounting
 until a complete order is calculated.
 
 ## Condorcet Discussion
-For a brief review, a `Condorcet Winner` is a candidate that would **beat** 
-all other candidates head-to-head. A `Weak Condorcet Winner` is a candidate
-that would **beat or tie** all other candidates head-to-head.
+For a brief review, a `Condorcet Winner` is a single candidate that 
+would **beat** all other candidates head-to-head. A `Weak Condorcet 
+Winner` is a single candidate that would **beat or tie** all other 
+candidates head-to-head.
 
 The `Smith Set` is the smallest set of candidates that would beat all
 other candidates head-to-head.
 
-The `Schwartz Set` is the smallest set of candidates that would beat or
+The `Schwartz Set` is comprised of candidates that would beat or
 tie all other candidates head-to-head.
 
 A single-candidate Smith Set is a Condorcet Winner. A single-candidate
@@ -45,7 +53,7 @@ Schwartz Set is at least a Weak Condorcet Winner.
 There are many other algorithms that purport to elect a single 
 winner from a multi-candidate Smith Set or a Schwartz Set. The 
 literature at this point is deeply misleading, as the flaws 
-with these "tiebreaking" algorithms are often painted as flaws 
+with these "tie-breaking" algorithms are often painted as flaws 
 with Condorcet methods in general. 
 
 Complicating this is that several so-called "Condorcet Method" 
@@ -64,7 +72,7 @@ Condorcet Method if it is limited to identifying the Smith Set,
 or the Schwartz Set if Weak Condorcet Winners are allowable.
 
 All other so-called "Condorcet Completion" algorithms should be
-described as they are - tiebreakers that are by their very nature
+described as they are - tie-breakers that are by their very nature
 flawed, in that they try to force consistency on a set of ballots
 that is by definition not consistent.
 
