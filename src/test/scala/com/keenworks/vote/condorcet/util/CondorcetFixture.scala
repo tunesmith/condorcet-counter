@@ -83,4 +83,30 @@ object CondorcetFixture {
     "9:8>7>6>5>4>3>2>12>9>10>11>1",
     "10:11>10>9>12>1>2>3>4>5>6>7>8"
   )
+
+  /*
+  The "Schulze Wiki" scenario is taken from the Schulze Method wikipedia page at
+  https://en.wikipedia.org/wiki/Schulze_method
+
+  While the Schulze method determines an order, the initial Schwartz Set (and Smith
+  Set) is still the set of all candidates.
+   */
+  val schulzeWikiCandidates = List(
+    "1:A",
+    "2:B",
+    "3:C",
+    "4:D",
+    "5:E"
+  )
+
+  val schulzeWikiBallots = List(
+    "5:1>3>2>5>4",
+    "5:1>4>5>3>2",
+    "8:2>5>4>1>3",
+    "3:3>1>2>5>4",
+    "7:3>1>5>2>4",
+    "2:3>2>1>4>5",
+    "7:4>3>5>2>1",
+    "8:5>2>1>4>3"
+  )
 }

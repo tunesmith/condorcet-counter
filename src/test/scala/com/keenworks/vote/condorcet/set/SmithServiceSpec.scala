@@ -30,6 +30,15 @@ class SmithServiceSpec extends CondorcetSpec {
     assert(smithSet.nonEmpty)
   }
 
+  it should "identify all candidates as the Smith Set in the SchulzeWiki fixture" in {
+    val candidates = CandidateService.getCandidates(CondorcetFixture.schulzeWikiCandidates)
+    val ballots = BallotService.getBallots(CondorcetFixture.schulzeWikiBallots)
+    val smithSet: List[List[Int]] = getSmithSet(candidates, ballots)
+//    SetPrinter.print(smithSet, candidates)
+    assert(smithSet.nonEmpty)
+    assert(smithSet.head.size == 5)
+  }
+
   private def getSmithSet(candidates: Map[Int, String], ballots: List[List[String]]) = {
     val tally = TallyService.tallyBallots(ballots, candidates.size)
     val candidateKeys: Seq[Int] = candidates.keys.toSeq.sortBy(x => x)

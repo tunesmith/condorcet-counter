@@ -31,6 +31,15 @@ class SchwartzServiceSpec extends CondorcetSpec {
     assert(schwartzSet.nonEmpty)
   }
 
+  it should "identify all candidates as the Schwartz Set in the SchulzeWiki fixture" in {
+    val candidates = CandidateService.getCandidates(CondorcetFixture.schulzeWikiCandidates)
+    val ballots = BallotService.getBallots(CondorcetFixture.schulzeWikiBallots)
+    val schwartzSet: List[List[Int]] = getSchwartz(candidates, ballots)
+//    SetPrinter.print(schwartzSet, candidates)
+    assert(schwartzSet.nonEmpty)
+    assert(schwartzSet.head.size == 5)
+  }
+
   private def getSchwartz(candidates: Map[Int, String], ballots: List[List[String]]) = {
     val tally = TallyService.tallyBallots(ballots, candidates.size)
 //    TallyPrinter.print(tally, candidates)
